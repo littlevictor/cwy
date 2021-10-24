@@ -1,0 +1,14 @@
+*.ilk
+*.pdb
+*.tlog
+*.idb
+*.log
+*.ipch
+*.db-wal
+*.opendb
+*.db-shm
+*.suo
+*.exe
+Solution.VC.db
+Browse.VC.db
+*/x64
