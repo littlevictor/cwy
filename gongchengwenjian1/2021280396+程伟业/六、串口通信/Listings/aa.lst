@@ -1,0 +1,72 @@
+C51 COMPILER V9.60.0.0   AA                                                                10/10/2021 13:52:49 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE AA
+OBJECT MODULE PLACED IN .\Objects\aa.obj
+COMPILER INVOKED BY: D:\keil\C51\BIN\C51.EXE aa.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\aa.lst) T
+                    -ABS(2) OBJECT(.\Objects\aa.obj)
+
+line level    source
+
+   1          #include<reg52.h>
+   2          
+   3          unsigned char code A_a[]="hello world!";
+   4          unsigned char code A_b[]="\n";
+   5          
+   6          unsigned char flag,a,i;
+   7          
+   8          void init(){
+   9   1        TMOD=0x20;
+  10   1        TH1=0xfd;
+  11   1        TL1=0xfd;
+  12   1        TR1=1;
+  13   1        REN=1;
+  14   1        SM0=0;
+  15   1        SM1=1;
+  16   1        EA=1;
+  17   1        ES=1;
+  18   1      }
+  19          
+  20          void main(){
+  21   1        init();
+  22   1        while(1){
+  23   2          if(flag==1){
+  24   3            ES=0;
+  25   3            for(i=0;i<12;i++){
+  26   4              SBUF=A_a[i];
+  27   4              while(!TI);
+  28   4              TI=0;
+  29   4            }
+  30   3            a=A_b[0];               //bu guan shu ru shen me fan hui zhi dou wei kong
+  31   3            SBUF=a;
+  32   3            while(!TI);
+  33   3            TI=0;
+  34   3            ES=1;
+  35   3            flag=0;
+  36   3          }
+  37   2        }
+  38   1      }
+  39          void ser() interrupt 4
+  40          {
+  41   1        RI=0;
+  42   1        a=SBUF;
+  43   1        flag=1;
+  44   1      }
+  45                
+  46            
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     94    ----
+   CONSTANT SIZE    =     15    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      3    ----
+C51 COMPILER V9.60.0.0   AA                                                                10/10/2021 13:52:49 PAGE 2   
+
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

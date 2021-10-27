@@ -1,0 +1,143 @@
+C51 COMPILER V9.60.0.0   AA                                                                10/10/2021 14:42:48 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE AA
+OBJECT MODULE PLACED IN .\Objects\aa.obj
+COMPILER INVOKED BY: D:\keil\C51\BIN\C51.EXE aa.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\aa.lst) T
+                    -ABS(2) OBJECT(.\Objects\aa.obj)
+
+line level    source
+
+   1          #include<reg52.h>
+   2          
+   3          sbit SEG_DLE=P2^6;
+   4          sbit SEG_WLE=P2^7;
+   5          
+   6          char code table[]={0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0x71};
+   7          unsigned int count=0,result=0,a,b,c,d,temp,zongshu=0;
+   8          
+   9          void delay(unsigned int x){
+  10   1        unsigned int i,j;
+  11   1        for(i=x;i>0;i--)
+  12   1          for(j=110;j>0;j--);
+  13   1      }
+  14          
+  15          int key(){                    //cong di san ti copy de
+  16   1        P3=0xfe;                    //yong count de zen jia ji lu
+  17   1        temp=P3;
+  18   1        temp&=0xfc;
+  19   1        if(temp!=0xfc){
+  20   2          delay(10);
+  21   2          temp=P3;
+  22   2          temp&=0xfc;
+  23   2          if(temp!=0xfc){
+  24   3            temp=P3;
+  25   3            switch(temp){
+  26   4              case 0xfa:
+  27   4              count=count+3;
+  28   4              break;
+  29   4              case 0xf6:
+  30   4              count=count+2;
+  31   4              break;
+  32   4            }
+  33   3            while(temp!=0xfc){
+  34   4              temp=P3;
+  35   4              temp&=0xfc;
+  36   4            }
+  37   3          }
+  38   2        }
+  39   1        P3=0xfd;
+  40   1        temp=P3;
+  41   1        temp&=0xfc;
+  42   1        if(temp!=0xfc){
+  43   2          delay(10);
+  44   2          temp=P3;
+  45   2          temp&=0xfc;
+  46   2          if(temp!=0xfc){
+  47   3            temp=P3;
+  48   3            switch(temp){
+  49   4              case 0xf9:
+  50   4              count=count+5;
+  51   4              break;
+  52   4              case 0xf5:
+  53   4              count=count+4;
+  54   4              break;
+C51 COMPILER V9.60.0.0   AA                                                                10/10/2021 14:42:48 PAGE 2   
+
+  55   4            }
+  56   3            while(temp!=0xfc){
+  57   4              temp=P3;
+  58   4              temp&=0xfc;
+  59   4            }
+  60   3          }
+  61   2        }
+  62   1        result=count;
+  63   1        return result;           //dan yi chu kou,li pu
+  64   1      }
+  65          
+  66          void main(){               //cong ji shi qi copy de
+  67   1        while(1){
+  68   2          key();
+  69   2          zongshu=key();
+  70   2          a=zongshu%10;
+  71   2          b=zongshu%100/10;
+  72   2          c=zongshu&1000/100;
+  73   2          d=zongshu/1000;
+  74   2          if(1){
+  75   3            SEG_DLE=1;
+  76   3            P0=table[a];
+  77   3            SEG_DLE=0;
+  78   3            P0=0xff;
+  79   3            SEG_WLE=1;
+  80   3            P0=0xf7;
+  81   3            SEG_WLE=0;
+  82   3            delay(1);
+  83   3          }
+  84   2          if(b!=0){
+  85   3            SEG_DLE=1;
+  86   3            P0=table[b];
+  87   3            SEG_DLE=0;
+  88   3            P0=0xff;
+  89   3            SEG_WLE=1;
+  90   3            P0=0xfb;
+  91   3            SEG_WLE=0;
+  92   3            delay(1);
+  93   3          }
+  94   2          if(c!=0){
+  95   3            SEG_DLE=1;
+  96   3            P0=table[c];
+  97   3            SEG_DLE=0;
+  98   3            P0=0xff;
+  99   3            SEG_WLE=1;
+ 100   3            P0=0xfd;
+ 101   3            SEG_WLE=0;
+ 102   3            delay(1);
+ 103   3          }
+ 104   2          if(d!=0){
+ 105   3            SEG_DLE=1;
+ 106   3            P0=table[d];
+ 107   3            SEG_DLE=0;
+ 108   3            P0=0xff;
+ 109   3            SEG_WLE=1;
+ 110   3            P0=0xfe;
+ 111   3            SEG_WLE=0;
+ 112   3            delay(1);
+ 113   3          }
+ 114   2        }
+ 115   1      }
+
+C51 COMPILER V9.60.0.0   AA                                                                10/10/2021 14:42:48 PAGE 3   
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    490    ----
+   CONSTANT SIZE    =     16    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     16    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

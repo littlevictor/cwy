@@ -1,0 +1,98 @@
+C51 COMPILER V9.60.0.0   AA                                                                10/10/2021 14:21:13 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE AA
+OBJECT MODULE PLACED IN .\Objects\aa.obj
+COMPILER INVOKED BY: D:\keil\C51\BIN\C51.EXE aa.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\aa.lst) T
+                    -ABS(2) OBJECT(.\Objects\aa.obj)
+
+line level    source
+
+   1          #include<reg52.h>
+   2          
+   3          sbit led3=P0^7;
+   4          sbit led2=P0^6;
+   5          sbit led0=P0^4;
+   6          sbit led1=P0^5;
+   7          
+   8          unsigned int temp;
+   9          
+  10          void delay(unsigned int x){
+  11   1        unsigned int i,j;
+  12   1        for(i=x;i>0;i--)
+  13   1          for(j=110;j>0;j--);
+  14   1      }
+  15          void key(){
+  16   1        P3=0xfe;             //sao miao di yi pai
+  17   1        temp=P3;
+  18   1        temp&=0xfc;
+  19   1        if(temp!=0xfc){
+  20   2          delay(10);
+  21   2          temp=P3;
+  22   2          temp&=0xfc;
+  23   2          if(temp!=0xfc){
+  24   3            temp=P3;
+  25   3            switch(temp){
+  26   4              case 0xfa:
+  27   4              led1=0;
+  28   4              break;
+  29   4              case 0xf6:
+  30   4              led0=0;
+  31   4              break;
+  32   4            }
+  33   3            while(temp!=0xfc){   //song jian guan deng
+  34   4              temp=P3;
+  35   4              temp&=0xfc;
+  36   4            }
+  37   3            led0=1;
+  38   3            led1=1;
+  39   3          }
+  40   2        }
+  41   1        P3=0xfd;      //sao miao di er pai
+  42   1        temp=P3;
+  43   1        temp&=0xfc;
+  44   1        if(temp!=0xfc){
+  45   2          delay(10);
+  46   2          temp=P3;
+  47   2          temp&=0xfc;
+  48   2          if(temp!=0xfc){
+  49   3            temp=P3;
+  50   3            switch(temp){
+  51   4              case 0xf9:
+  52   4              led3=0;
+  53   4              break;
+  54   4              case 0xf5:
+C51 COMPILER V9.60.0.0   AA                                                                10/10/2021 14:21:13 PAGE 2   
+
+  55   4              led2=0;
+  56   4              break;
+  57   4            }
+  58   3            while(temp!=0xfc){    // song jian guan deng
+  59   4              temp=P3;
+  60   4              temp&=0xfc;
+  61   4            }
+  62   3            led2=1;
+  63   3            led3=1;
+  64   3          }
+  65   2        }
+  66   1      }
+  67          
+  68          void main(){
+  69   1        while(1){
+  70   2          key();
+  71   2        }
+  72   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    248    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      2    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

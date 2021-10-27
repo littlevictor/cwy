@@ -1,0 +1,53 @@
+C51 COMPILER V9.60.0.0   AA                                                                10/10/2021 14:02:30 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE AA
+OBJECT MODULE PLACED IN .\Objects\aa.obj
+COMPILER INVOKED BY: D:\keil\C51\BIN\C51.EXE aa.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\aa.lst) T
+                    -ABS(2) OBJECT(.\Objects\aa.obj)
+
+line level    source
+
+   1          #include<reg52.h>
+   2          
+   3          sbit led0=P0^4;
+   4          
+   5          void delay(unsigned int a){           //delay tai chang le
+   6   1        while(--a);   
+   7   1      }
+   8          
+   9          unsigned int time,i;
+  10          
+  11          int main(){                           //chu shi hua
+  12   1          led0=1;
+  13   1        time=1000,i=0;                      //1000=1000/110ms 
+  14   1        while(1){
+  15   2          for(i=1;i<time;i++){              //tiao zheng liang shan zhan bi
+  16   3            led0=0;
+  17   3            delay(i);
+  18   3            led0=1;
+  19   3            delay(time-i);
+  20   3          }
+  21   2          for(i=999;i>0;i--){
+  22   3            led0=0;
+  23   3            delay(i);
+  24   3            led0=1;
+  25   3            delay(time-i);
+  26   3          }
+  27   2        }
+  28   1      }
+  29          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    116    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      4    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
