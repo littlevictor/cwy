@@ -1,5 +1,0 @@
-Dependencies for Project 'aa', Target 'Target 1': (DO NOT MODIFY !)
-CompilerVersion: 6140001::V6.14.1::ARMCLANG
-F (.\startup_stm32f10x_hd.s)(0x6172E9FA)(--target=arm-arm-none-eabi -mcpu=cortex-m3 -masm=auto -c-gdwarf-3 -Wa,armasm,--pd,"__MICROLIB SETA 1"-ID:/keil/gongchengwenjian/Keil/STM32F1xx_DFP/2.3.0/Device/Include-ID:/keil/ARM/CMSIS/Include-Wa,armasm,--pd,"__UVISION_VERSION SETA 532" -Wa,armasm,--pd,"STM32F10X_HD SETA 1"-o ./objects/startup_stm32f10x_hd.o)
-F (.\main.c)(0x6172E9FA)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m3 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-3 -O1 -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -ID:/keil/gongchengwenjian/Keil/STM32F1xx_DFP/2.3.0/Device/Include-ID:/keil/ARM/CMSIS/Include-D__UVISION_VERSION="532" -DSTM32F10X_HD-o ./objects/main.o -MD)
-F (.\stm32f10x.h)(0x4D783CB4)()
